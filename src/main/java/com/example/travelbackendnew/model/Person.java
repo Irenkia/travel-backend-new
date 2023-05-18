@@ -1,9 +1,11 @@
 package com.example.travelbackendnew.model;
 
-import jakarta.persistence.*;
+//import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import javax.persistence.*;
 
 @Entity
 @Table(name = "persons")
@@ -33,5 +35,13 @@ public class Person {
         this.lastName = lastName;
         this.email = email;
         this.password = password;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
     }
 }

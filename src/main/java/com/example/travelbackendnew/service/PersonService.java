@@ -3,12 +3,12 @@ package com.example.travelbackendnew.service;
 import com.example.travelbackendnew.model.Person;
 import com.example.travelbackendnew.repository.PersonRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Service;
+//import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
-@Service
+//@Service
 @RequiredArgsConstructor
 public class PersonService {
     private final PersonRepository personRepository;

@@ -20,7 +20,7 @@ public class PersonController {
     @Autowired
     private final PersonRepository personRepository;
 
-    @GetMapping("/sign-up")
+    @GetMapping("/persons")
     public ResponseEntity<List<Person>> getAllPersons () {
         try {
             List<Person> persons = new ArrayList<Person>();
@@ -35,7 +35,7 @@ public class PersonController {
         }
     }
 
-    @GetMapping("/sign-up/{id}")
+    @GetMapping("/persons/{id}")
     public ResponseEntity<Person> getPersonById(@PathVariable("id") Integer id) {
         Optional<Person> personData = personRepository.findById(id);
 
@@ -46,8 +46,8 @@ public class PersonController {
         }
     }
 
-    @PostMapping("/sign-up")
-    public ResponseEntity<Person> createCountry(@RequestBody Person person) {
+    @PostMapping("/persons")
+    public ResponseEntity<Person> createPerson(@RequestBody Person person) {
         try {
             Person _person = personRepository
                     .save(new Person(person.getFirstName(), person.getLastName(), person.getEmail(), person.getPassword()));
@@ -58,7 +58,7 @@ public class PersonController {
     }
 
 
-    @PutMapping("/sign-up/{id}")
+    @PutMapping("/persons/{id}")
     public ResponseEntity<Person> updatePerson(@PathVariable("id") Integer id, @RequestBody Person person) {
         Optional<Person> personData = personRepository.findById(id);
 
@@ -74,7 +74,7 @@ public class PersonController {
         }
     }
 
-    @DeleteMapping("/sign-up/{id}")
+    @DeleteMapping("/persons/{id}")
     public ResponseEntity<HttpStatus> deletePerson(@PathVariable("id") Integer id) {
         try {
             personRepository.deleteById(id);
@@ -84,7 +84,7 @@ public class PersonController {
         }
     }
 
-    @DeleteMapping("/sign-up")
+    @DeleteMapping("/persons")
     public ResponseEntity<HttpStatus> deleteAllPersons() {
         try {
             personRepository.deleteAll();
@@ -94,10 +94,10 @@ public class PersonController {
         }
     }
 
-    @GetMapping("/sign-up/lastName")
-    public ResponseEntity<List<Person>> findByName(@RequestParam String lastName) {
+    @GetMapping("/persons/lastName")
+    public ResponseEntity<List<Person>> findByLike(@RequestParam String lastName) {
         try {
-            List<Person> persons = personRepository.findBylastName(lastName);
+            List<Person> persons = personRepository.findByLike(lastName);
 
             if (persons.isEmpty()) {
                 return new ResponseEntity<>(HttpStatus.NO_CONTENT);
@@ -107,4 +107,18 @@ public class PersonController {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
+//    @GetMapping("/persons/lastName")
+//    public ResponseEntity<List<Person>> findBylastName(@RequestParam String lastName) {
+//        try {
+//            List<Person> persons = personRepository.findBylastName(lastName);
+//
+//            if (persons.isEmpty()) {
+//                return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+//            }
+//            return new ResponseEntity<>(persons, HttpStatus.OK);
+//        } catch (Exception e) {
+//            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+//        }
+//    }
 }
