@@ -50,7 +50,7 @@ public class PersonController {
     public ResponseEntity<Person> createPerson(@RequestBody Person person) {
         try {
             Person _person = personRepository
-                    .save(new Person(person.getFirstName(), person.getLastName(), person.getEmail(), person.getPassword()));
+                    .save(new Person(person.getName(), person.getSurname(), person.getEmail(), person.getPassword()));
             return new ResponseEntity<>(_person, HttpStatus.CREATED);
         } catch (Exception e) {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
@@ -64,8 +64,8 @@ public class PersonController {
 
         if (personData.isPresent()) {
             Person _person = personData.get();
-            _person.setFirstName(person.getFirstName());
-            _person.setLastName(person.getLastName());
+            _person.setName(person.getName());
+            _person.setSurname(person.getSurname());
             _person.setEmail(person.getEmail());
             _person.setPassword(person.getPassword());
             return new ResponseEntity<>(personRepository.save(_person), HttpStatus.OK);
@@ -94,10 +94,10 @@ public class PersonController {
         }
     }
 
-    @GetMapping("/persons/lastName")
-    public ResponseEntity<List<Person>> findByLike(@RequestParam String lastName) {
+    @GetMapping("/persons/surname")
+    public ResponseEntity<List<Person>> findByLike(@RequestParam String surname) {
         try {
-            List<Person> persons = personRepository.findByLike(lastName);
+            List<Person> persons = personRepository.findByLike(surname);
 
             if (persons.isEmpty()) {
                 return new ResponseEntity<>(HttpStatus.NO_CONTENT);
@@ -108,10 +108,10 @@ public class PersonController {
         }
     }
 
-//    @GetMapping("/persons/lastName")
-//    public ResponseEntity<List<Person>> findBylastName(@RequestParam String lastName) {
+//    @GetMapping("/persons/surname")
+//    public ResponseEntity<List<Person>> findBySurname(@RequestParam String surname) {
 //        try {
-//            List<Person> persons = personRepository.findBylastName(lastName);
+//            List<Person> persons = personRepository.findBySurname(surname);
 //
 //            if (persons.isEmpty()) {
 //                return new ResponseEntity<>(HttpStatus.NO_CONTENT);

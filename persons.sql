@@ -1,7 +1,7 @@
 CREATE TABLE persons(
                       person_id integer primary key,
-                      first_name varchar(30) NOT NULL,
-                      last_name varchar(30) NOT NULL,
+                      name varchar(30) NOT NULL,
+                      surname varchar(30) NOT NULL,
                       email varchar(50) NOT NULL,
                       passwor varchar(50) NOT NULL
 );

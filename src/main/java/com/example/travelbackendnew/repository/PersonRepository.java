@@ -9,12 +9,12 @@ import java.util.List;
 
 //@Repository
 public interface PersonRepository extends JpaRepository<Person, Integer> {
-//    List<Person> findByNameContaining(String lastName);
+//    List<Person> findByNameContaining(String surname);
 
-    @Query("SELECT p FROM Person p WHERE p.lastName like %?1%")
-    List<Person> findByLike(String lastName);
+    @Query("SELECT p FROM Person p WHERE p.surname like %?1%")
+    List<Person> findByLike(String surname);
 
-//    List<Person> findBylastName(String lastName);
+//    List<Person> findBySurname(String surname);
 
-//    Optional<Person> findByName(String lastName);
+//    Optional<Person> findByName(String Name);
 }
